@@ -26,9 +26,15 @@ class TestBoardFunctions(unittest.TestCase):
         self.assertEqual(test_board.update_cell(3,3), False)
 
     def test_update_dead_one_neighbor(self):
-        pass
+        test_board = board(True)
+        test_board.keyboard[3][2] = True
+        self.assertEqual(test_board.update_cell(3,3), False)
 
     def test_update_dead_two_neighbors(self):
+        test_board = board(True)
+        test_board.keyboard[4][3] = True
+        test_board.keyboard[2][4] = True
+        self.assertEqual(test_board.update_cell(3,3), False)
         pass
 
     def test_update_dead_three_neighbors(self):

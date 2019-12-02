@@ -13,7 +13,9 @@ class board:
         self.wrap_around = wrap_around
         self.keyboard_width = keyboard_width
         self.keyboard_height = keyboard_height
-        self.keyboard = [[False]*keyboard_width]*keyboard_height
+        self.keyboard = []
+        for i in range(keyboard_height):
+            self.keyboard.append([False]*keyboard_width)
 
         self.key_map = {'esc': (0,0), 'f1': (0,1), 'f2': (0,2), 'f3': (0,3),
                         'f4': (0,4), 'f5': (0,5), 'f6': (0,6), 'f7': (0,7),

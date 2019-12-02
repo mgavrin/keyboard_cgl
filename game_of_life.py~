@@ -1,0 +1,21 @@
+kKeyboardWidth = 21
+kKeyboardHeight = 6
+keyboard = [[False]*kKeyboardWidth]*kKeyboardHeight
+
+key_map = {'esc': (0,0), 'f1': (0,1), 'f2': (0,2), 'f3': (0,3), 'f4': (0,4),
+           'f5': (0,5), 'f6': (0,6), 'f7': (0,7), 'f8': (0,8), 'f9': (0,9),
+           'f10': (0,10), 'f11': (0,11), 'f12': (0,12), 'printscreen': (0,13),
+           'scrolllock': (0,14), 'pause': (0,15)} #fill the rest in later
+
+def update_cell(x,y):
+    neighbors = set((x-1, y-1), (x-1, y), (x-1, y+1),
+                    (x, y-1), (x, y+1),
+                    (x+1, y-1), (x+1, y), (x+1, y+1))
+    if x == 0:
+        pass
+    if y == 0:
+        excluded = set((x-1, y-1))
+    if x == kKeyboardWidth-1:
+        excluded = set((x+1, y-1), (x+1, y), (x+1, y+1))
+    if y == kKeyboardHeight-1:
+        excluded = set((x-1, y+1), (x, y+1), (x+1, y+1))

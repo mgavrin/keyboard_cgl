@@ -2,17 +2,17 @@
 
 ### Note: the keyboard is treated as a grid despite not being exactly aligned on one.
 ### Cells that do not correspond to any real key are inserted where there is no key
-### on the keyboard (e.g., between the "end" key and the "up arrow" key.
+### on the keyboard (e.g., between the "end" key and the "up arrow" key).
 
 import sets
 
 class board:
-    def __init__(self, keyboard_width = 21, keyboard_height = 6):
+    def __init__(self, wrap_around = False, keyboard_width = 21, keyboard_height = 6):
         # If kWrapAround is true, the bottom of the grid wraps around to the top,
         # and the right to the left, as if the keyboard was a torus.
-        self.wrap_around = False
-        self.keyboard_width = 21
-        self.keyboard_height = 6
+        self.wrap_around = wrap_around
+        self.keyboard_width = keyboard_width
+        self.keyboard_height = keyboard_height
         self.keyboard = [[False]*keyboard_width]*keyboard_height
 
         self.key_map = {'esc': (0,0), 'f1': (0,1), 'f2': (0,2), 'f3': (0,3),
@@ -35,9 +35,9 @@ class board:
             neighbors = exclude_out_of_bounds_neighbors(neighbors)
         living_neighbors = 0
         for neighbor in neighbors:
-            if keyboard[neighbor[0]][neighbor[1]]:
+            if self.keyboard[neighbor[0]][neighbor[1]]:
                 living_neighbors += 1
-        if keyboard[r][c]:
+        if self.keyboard[r][c]:
             return 2 <= living_neighbors <= 3
         else:
             return living_neighbors == 3
@@ -50,6 +50,6 @@ class board:
         '''
         allowed = sets.Set()
         for neighbor in neighbors:
-            if (0 < neighbor[0] < self.keyboard_width) and (0 < neighbor[1] < self.keyboard_height):
+            if (0 <= neighbor[0] < self.keyboard_width) and (0 <= neighbor[1] < self.keyboard_height):
                allowed.add(neighbor)
         return allowed

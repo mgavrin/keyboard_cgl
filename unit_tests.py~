@@ -1,0 +1,22 @@
+from sets import *
+from game_of_life import board
+import unittest
+
+class TestBoardFunctions(unittest.TestCase):
+    def setUp(self):
+        test_board = board()
+
+    def test_exclude_neighbors:
+        pass
+
+    def test_exclue_neighbors_wraparound:
+        #nothing should be excluded when wrap_around is true
+        pass
+
+    def test_update_dead_no_neighbors:
+        pass
+    
+        
+
+test_neighbors = Set([(-1, -1), (1,1)])
+print test_board.exclude_out_of_bounds_neighbors(test_neighbors)
